@@ -1,7 +1,8 @@
 #vue-cms
 ###20160927-20161010  后端CMS运营界面
 [coding demo->后端CMS运营界面](http://rowboat.coding.me/cms)
-或者：[github demo->后端CMS运营界面](http://lxchuan12.github.io/vue-cms)
+或者：(原来是在coding，现转移到到github。)
+[github demo->后端CMS运营界面](http://lxchuan12.github.io/vue-cms)
 
 页面，拖拽，保存，上传图片。
 vuejs，或者用jquery.
