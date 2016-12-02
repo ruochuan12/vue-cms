@@ -1,0 +1,345 @@
+.component-wrap{
+	margin:0 auto;
+	width: 1022px;
+}
+/* 功能样式-start */
+.float{
+	float: left;
+}
+/* 功能样式-end */
+/* 菜单 */
+.side-menu{
+	font-size: 14px;
+	width:160px;
+	margin-right: 130px;
+	float: left;
+    background: #387E96;
+}
+.side-menu .title{
+	font-size: 16px;
+	padding-left:5px; 
+	font-weight: bold;
+	height: 40px;
+	line-height: 40px;
+	color: #FFF;
+}
+.side-menu .menu-list{
+	width: 160px;
+}
+.side-menu .menu-list .menu-item{
+	/*height: 36px;
+	line-height: 36px;*/
+	color: #fff;
+	background: #428BCA;
+}
+.side-menu .menu-list .menu-item .menu-link{
+	padding:0 10px; 
+	/*width: 60px;*/
+	height: 36px;
+	line-height: 36px;
+	display: block;
+	color: #888888;
+	background: #E1E1E1;
+}
+.side-menu .menu-list .menu-item .menu-link:hover{
+	background: #ADD8E6;
+	cursor: pointer;
+}
+.side-menu .menu-list .menu-item .active{
+	background: #EAF2FF;
+}
+
+/* tab-content内容-start */
+.side-menu .tab-content{
+	background: #fff;
+	height: 300px;
+	overflow-y: auto;
+    overflow-x: hidden;
+}
+.side-menu .tab-content .item{
+	position: relative;
+	height: 60px;
+	margin-top:5px; 
+	cursor: pointer;
+}
+/*.side-menu .tab-content .item+.item{
+	margin-top:5px; 
+}*/
+.side-menu .tab-content .item:hover{
+	outline: 2px dashed #BEBEBE;
+}
+.side-menu .tab-content .item .item-img{
+	width: 155px;
+	height: 60px;
+}
+.side-menu .tab-content .item .tips{
+	text-align: center;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	padding: 0 10px;
+	width: 130px;
+	background: #000;
+	opacity: 0.3;
+	color: #fff;
+	height: 20px;
+	line-height: 20px;
+	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: none;
+}
+/* tab-content内容-end */
+/* 菜单-end */
+/* 主栏 */
+.main-wrap{
+	width:390px;
+	padding: 2px 20px;
+	float: left;
+	height: 600px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+/* 没有数据提示信息 */
+.main-wrap .noData-tips{
+	width:380px;
+	height:400px;
+	line-height:400px;
+	font-size:18px;
+	text-align:center;
+	color:#888888;
+}
+.main-wrap-outline{
+	outline: 2px dashed #ccc;
+	border:none;
+}
+.main-wrap .main-li{
+	cursor: move;
+	width: 360px;
+	height: 200px;
+	position: relative;
+	padding: 3px;
+}
+.main-wrap .main-li:hover{
+	outline: 1px dashed #387E96;
+}
+.main-wrap .big-img{
+	width: 360px;
+	height: 200px;
+	position: relative;
+	outline: 1px solid #FFF;
+	background:#eee url(../img/bg-click.png) no-repeat center center; 
+}
+
+.main-wrap .img-wrap{
+	/*width: 360px;*/
+	height: 200px;
+	position: relative;
+}
+.main-wrap .isEdit-outline{
+	outline: 2px dashed #F23030;
+	/*box-shadow: 2px 2px 2px 2px #F88E8B;DD524E*/
+}
+.main-wrap .img-wrap .upload-img {
+	width: 360px;
+	height: 200px;
+	display: block;
+	cursor: auto;
+}
+.main-wrap .img-wrap .captions{
+	color: #fff;
+	height: 20px;
+	line-height: 20px;
+	background: #000;
+	opacity: 0.3;
+	padding:0 10px; 
+	width: 340px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+/*upload-input上传按钮隐藏-start */
+.main-wrap .big-img  .upload-input,.main-wrap .img-wrap  .upload-input{
+    position: absolute;
+    font-size: 10px;
+    top:50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    width: 120px;
+    height: 100px;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer;
+}
+/*upload-input上传按钮美化-end */
+/* 两张图片样式-start */
+.main-wrap .two-img{
+	width: 180px;
+	height: 200px;
+}
+.main-wrap .two-img-wrap{
+	width: 180px;
+	height: 200px;
+}
+.main-wrap .img-wrap .two-captions{
+	width: 160px;
+}
+.main-wrap .img-wrap .two-upload-img{
+	width: 180px;
+}
+/* 两张图片样式-end */
+/* 三张图片样式-start */
+.main-wrap .three-img{
+	width: 120px;
+	height: 200px;
+}
+.main-wrap .three-img-wrap{
+	width: 120px;
+	height: 200px;
+}
+.main-wrap .img-wrap .three-captions{
+	width: 100px;
+}
+.main-wrap .img-wrap .three-upload-img{
+	width: 120px;
+}
+/* 三张图片样式-end */
+/* left1,right2样式-start */
+.main-wrap .L1R2-img{
+	width: 180px;
+	height: 100px;
+}
+.main-wrap .L1R2-img-wrap{
+	width: 180px;
+	height: 100px;
+}
+.main-wrap .img-wrap .L1R2-captions{
+	width: 160px;
+}
+.main-wrap .img-wrap .L1R2-upload-img{
+	width: 180px;
+	height: 100px;
+}
+.main-wrap .L2R1-float{
+	float: left;
+}
+/* left1,right2样式-end */
+/* 按钮-start */
+.main-wrap .btn-wrap{
+	width: 32px;
+	height: 200px;
+	position: absolute;
+	top: 0;
+	right: -32px;
+}
+.main-wrap .btn-item{
+	outline: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 10;
+	padding: 0;
+	border: none;
+	width: 30px;
+	height: 30px;
+	background: #E1E1E1;
+	color:#fff;
+	cursor: pointer;
+}
+.main-wrap .btn-item:hover{
+	background: #ADD8E6;
+}
+.main-wrap .btn-remove{
+	right: 0;
+}
+.main-wrap .btn-up{
+	top:32px;
+}
+.main-wrap .btn-down{
+	top:64px;
+}
+.main-wrap .btn-drag{
+	top:96px;
+	cursor:move;
+}
+.main-wrap .btn-edit{
+	right: 0;
+}
+/* 按钮-end */
+/* 边栏-start */
+.side-wrap{
+	width: 290px;
+	margin-left:10px; 
+	float: left;
+	/*overflow-y: auto;
+ 	overflow-x: hidden;*/ 
+ 	position: relative;
+	height: 600px;
+}
+/* 编辑链接和标题-start */
+.side-wrap .link-title-wrap{
+	height: 400px;
+}
+.side-wrap .link-title-wrap .link-wrap,.side-wrap .link-title-wrap .title-wrap{
+	background: #fff;
+	width: 260px;
+	height:100px;
+	padding: 20px;
+	margin-top: 20px;
+}
+.side-wrap .link-title-wrap .link-wrap .title,.side-wrap .link-title-wrap .title-wrap .title{
+	font-size: 14px;
+	padding-bottom:20px; 
+}
+.side-wrap .link-title-wrap .link-wrap .ipt,.side-wrap .link-title-wrap .title-wrap .ipt{
+	font-size: 14px;
+	height: 54px;
+	width: 240px;
+	border:none;
+	padding:0 10px; 
+	background: #F8F9F8;
+}
+.side-wrap .link-title-wrap .btn-save{
+	margin-top: 20px;
+	/*background: #4991E1;*/
+	background: #387E96;
+	width: 100px;
+	height: 32px;
+	font-size: 14px;
+	color: #fff;
+	padding: 0;
+	border:none;
+	outline:none;
+	cursor: pointer;
+}
+.side-wrap .link-title-wrap .btn-save:hover{
+	background: #ADD8E6;
+}
+/* 编辑链接和标题-end */
+/* 全部保存按钮-start */
+.side-wrap .save-all-wrap{
+	position: absolute;
+	right: 190px;
+	bottom:20px; 
+}
+.side-wrap .save-all-wrap .btn-save-all{
+	margin-top: 20px;
+	background: #387E96;
+	width: 100px;
+	height: 32px;
+	font-size: 14px;
+	color: #fff;
+	padding: 0;
+	border:none;
+	outline:none;
+	cursor: pointer;
+}
+.side-wrap .save-all-wrap .btn-save-all:hover{
+	background: #ADD8E6;
+}
+/* 全部保存按钮-end */
+/* 边栏-end */ 

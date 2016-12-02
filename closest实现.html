@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>closest实现(司徒正美)</title>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="">
+                <div>
+                    <img src="" alt="">
+                </div>
+            </a>
+        </li>
+    </ul>
+    <script>
+
+    function closest( expr ) {
+        // 如果字符串包含位置伪类或者是个元素节点,则封装为一个dom对象,否则为0(即false的简写,用于快速跳过分支)
+        var node =  expr.nodeType ? expr : 0, nodes = dom.slice(this);//将它转换为纯数组
+        //遍历原dom对象的节点
+        for (var i = 0, ret = [], cur; cur = this[i++];) {//由于肯定里面都是节点,因此可以使用这种循环
+            while (cur && cur.nodeType === 1 ) {
+                //如果是dom对象,则判定其是否包含当前节点,否则使用matchesSelector方法判定这个节点是否匹配给定的表达式expr
+                if ( node ? nodes.indexOf(node) > -1 : matchElement( cur, expr ) ){
+                    //indexOf方法在某些浏览器需要自行实现
+                    //是则放入选择器中
+                    ret.push( cur );
+                    break;
+                } else {
+                    // 否则把当前节点变为其父节点
+                    cur = cur.parentNode;
+                }
+            }
+        }
+        //如果大于1,进行唯一化操作
+        ret = ret.length > 1 ? dom.unique( ret ) : ret;
+        //将节点集合重新包装成一个新dom对象返回
+        return this.labor(ret);
+    }
+    var imgNode = document.querySelector('img');
+    console.log(imgNode);
+    console.log(imgNode.closest('li'));
+    </script>
+</body>
+</html>
