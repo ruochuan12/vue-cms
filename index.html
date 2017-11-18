@@ -62,66 +62,67 @@
 		<div class="main-wrap" :class="{'main-wrap-outline':!compData.length}">
         <div class="noData-tips" v-if="!compData.length">点击左侧菜单添加组件</div>
 		<ul>
-		<li class="main-li clearfix" v-for="(index,compItem) in compData" id="{{ $index }}" v-drag-and-drop drop="handleDrop">
+            <!-- v-drag-and-drop drop="handleDrop" -->
+		<li class="main-li clearfix" v-for="(compItem, $index) in compData" :id="$index">
             <div class="btn-wrap">
-                <button class="btn-item btn-up" @click="sortNodeUp(index)">↑</button>
-                <button class="btn-item btn-down" @click="sortNodeDown(index)">↓</button>
+                <button class="btn-item btn-up" @click="sortNodeUp($index)">↑</button>
+                <button class="btn-item btn-down" @click="sortNodeDown($index)">↓</button>
                 <button class="btn-item btn-drag">drag</button>
-                <button v-if="1" class="btn-item btn-remove" @click="removeNode(index)">X</button>
+                <button v-if="1" class="btn-item btn-remove" @click="removeNode($index)">X</button>
             </div>
             <!-- 一、两、三张图片，不同class -->
-			<div v-if="compItem.compType==='PICTURE1'||compItem.compType==='PICTUREMIX2'||compItem.compType==='PICTUREMIX3'" v-for="(key,contentItem) in compItem.contents" class="float">
+			<div v-if="compItem.compType==='PICTURE1'||compItem.compType==='PICTUREMIX2'||compItem.compType==='PICTUREMIX3'" v-for="(contentItem, key) in compItem.contents" class="float">
 				<div :class="{'two-img':compItem.compType==='PICTUREMIX2','three-img':compItem.compType==='PICTUREMIX3'}" class="big-img" v-if="!contentItem.image">
-                    <input class="upload-input" type="file" @change="onFileChange($event,index,key)">
+                    <input class="upload-input" type="file" @change="onFileChange($event,$index,key)">
 				</div>
-				<div :class="{'two-img-wrap':compItem.compType==='PICTUREMIX2','three-img-wrap':compItem.compType==='PICTUREMIX3','isEdit-outline':isEdit.index===index&&isEdit.key===key&&isEdit.isEditing}" class="img-wrap" v-else>
-					<a href="{{contentItem.link}}" v-on:click.prevent>
+				<div :class="{'two-img-wrap':compItem.compType==='PICTUREMIX2','three-img-wrap':compItem.compType==='PICTUREMIX3','isEdit-outline':isEdit.index===$index&&isEdit.key===key&&isEdit.isEditing}" class="img-wrap" v-else>
+					<a :href="contentItem.link" v-on:click.prevent>
                         <img :class="{'two-upload-img':compItem.compType==='PICTUREMIX2','three-upload-img':compItem.compType==='PICTUREMIX3'}" class="upload-img" :src="contentItem.image" />
                     </a>
-                    <input class="upload-input" type="file" @change="onFileChange($event,index,key)">
+                    <input class="upload-input" type="file" @change="onFileChange($event,$index,key)">
 					<p :class="{'two-captions':compItem.compType==='PICTUREMIX2','three-captions':compItem.compType==='PICTUREMIX3'}" class="captions">{{contentItem.captions}}</p>
-					<button class="btn-item btn-edit" @click="editLinkTitle(index,key)">edit</button>
+					<button class="btn-item btn-edit" @click="editLinkTitle($index,key)">edit</button>
 				</div>
 			</div>
             <!-- /一、两、三张图片，不同class -->
             <!-- 左边1张，右边2张图片 -->
-            <div v-if="compItem.compType==='PICTUREMIXL1R2'" v-for="(key,contentItem) in compItem.contents" class="float">
-                <div :class="{'two-img':$index===0,'L1R2-img':$index>0}" class="big-img" v-if="!contentItem.image">
-                    <input class="upload-input" type="file" @change="onFileChange($event,index,key)">
+            <div v-if="compItem.compType==='PICTUREMIXL1R2'" v-for="(contentItem, key) in compItem.contents" class="float">
+                <div :class="{'two-img':key===0,'L1R2-img':key>0}" class="big-img" v-if="!contentItem.image">
+                    <input class="upload-input" type="file" @change="onFileChange($event,$index,key)">
                 </div>
-                <div :class="{'two-img-wrap':$index===0,'L1R2-img-wrap':$index>0,'isEdit-outline':isEdit.index===index&&isEdit.key===key&&isEdit.isEditing}" class="img-wrap" v-else>
-                    <a href="{{contentItem.link}}"><img :class="{'two-upload-img':$index===0,'L1R2-upload-img':$index>0}" class="upload-img" :src="contentItem.image" /></a>
-                    <p :class="{'two-captions':$index===0,'L1R2-captions':$index>0}" class="captions">{{contentItem.captions}}</p>
-                    <input class="upload-input" type="file" @change="onFileChange($event,index,key)">
-                    <button class="btn-item btn-edit" @click="editLinkTitle(index,key)">edit</button>
+                <div :class="{'two-img-wrap':key===0,'L1R2-img-wrap':key>0,'isEdit-outline':isEdit.index===$index&&isEdit.key===key&&isEdit.isEditing}" class="img-wrap" v-else>
+                    <a :href="contentItem.link"><img :class="{'two-upload-img':key===0,'L1R2-upload-img':key>0}" class="upload-img" :src="contentItem.image" /></a>
+                    <p :class="{'two-captions':key===0,'L1R2-captions':key>0}" class="captions">{{contentItem.captions}}</p>
+                    <input class="upload-input" type="file" @change="onFileChange($event,$index,key)">
+                    <button class="btn-item btn-edit" @click="editLinkTitle($index,key)">edit</button>
                 </div>
             </div>
             <!-- /左边1张，右边2张图片 -->
             <!-- 左边2张，右边1张图片 -->
             <!-- 单独处理前两张，float到左边 -->
             <div class="L2R1-float" v-if="compItem.compType==='PICTUREMIXL2R1'">
-                <div v-if="compItem.compType==='PICTUREMIXL2R1'&&$index<2" v-for="(key,contentItem) in compItem.contents">
+                <div v-if="compItem.compType==='PICTUREMIXL2R1'&&key<2" v-for="(contentItem, key) in compItem.contents">
                     <div class="big-img L1R2-img" v-if="!contentItem.image">
-                        <input class="upload-input" type="file" @change="onFileChange($event,index,key)">
+                        <input class="upload-input" type="file" @change="onFileChange($event,$index,key)">
                     </div>
-                    <div :class="{'isEdit-outline':isEdit.index===index&&isEdit.key===key&&isEdit.isEditing}" class="img-wrap L1R2-img-wrap" v-else>
-                        <a href="{{contentItem.link}}"><img class="upload-img L1R2-upload-img" :src="contentItem.image" /></a>
-                        <input class="upload-input" type="file" @change="onFileChange($event,index,key)">
+                    <div :class="{'isEdit-outline':isEdit.index===$index&&isEdit.key===key&&isEdit.isEditing}" class="img-wrap L1R2-img-wrap" v-else>
+                        <a :href="contentItem.link"><img class="upload-img L1R2-upload-img" :src="contentItem.image" /></a>
+                        <input class="upload-input" type="file" @change="onFileChange($event,$index,key)">
                         <p class="captions L1R2-captions">{{contentItem.captions}}</p>
-                        <button class="btn-item btn-edit" @click="editLinkTitle(index,key)">edit</button>
+                        <button class="btn-item btn-edit" @click="editLinkTitle($index,key)">edit</button>
                     </div>
                 </div>
             </div>
             <!-- /单独处理前两张，float到左边 -->
-            <div v-if="compItem.compType==='PICTUREMIXL2R1'&&$index===2" v-for="(key,contentItem) in compItem.contents" class="float">
+            <div v-if="compItem.compType==='PICTUREMIXL2R1'&&key===2" v-for="(contentItem, key) in compItem.contents" class="float">
                 <div class="big-img two-img" v-if="!contentItem.image">
-                    <input class="upload-input" type="file" @change="onFileChange($event,index,key)">
+                    <input class="upload-input" type="file" @change="onFileChange($event,$index,key)">
                 </div>
-                <div :class="{'isEdit-outline':isEdit.index===index&&isEdit.key===key&&isEdit.isEditing}" class="img-wrap two-img-wrap" v-else>
-                    <a href="{{contentItem.link}}"><img class="upload-img two-upload-img" :src="contentItem.image" /></a>
-                    <input class="upload-input" type="file" @change="onFileChange($event,index,key)">
+                <div :class="{'isEdit-outline':isEdit.index===$index&&isEdit.key===key&&isEdit.isEditing}" class="img-wrap two-img-wrap" v-else>
+                    <a :href="contentItem.link"><img class="upload-img two-upload-img" :src="contentItem.image" /></a>
+                    <input class="upload-input" type="file" @change="onFileChange($event,$index,key)">
                     <p class="captions two-captions">{{contentItem.captions}}</p>
-                    <button class="btn-item btn-edit" @click="editLinkTitle(index,key)">edit</button>
+                    <button class="btn-item btn-edit" @click="editLinkTitle($index,key)">edit</button>
                 </div>
             </div>
             <!-- /左边2张，右边1张图片 -->
@@ -249,13 +250,23 @@
                 }else{
                     this.navIndex = _index;
                 };
-        	},
+            },
+            /**
+             * desc 上传图片
+             * author lxchuan12@163.com
+             * date 2017-11-18
+             * @param {Object} 事件
+             * @param {index} 竖向索引值
+             * @param {key} 行索引值
+             */
             onFileChange(e,index,key) {
                 var files = e.target.files || e.dataTransfer.files;
                 if (!files.length)return; 
+                console.log('onFileChange', index,key);
                 this.createImage(files,index,key);
             },
             createImage(files,index,key) {
+                console.log('createImage', index, key);
                 if(typeof FileReader==='undefined'){
                     alert('您的浏览器不支持图片上传，请升级您的浏览器');
                     return false;
@@ -268,6 +279,7 @@
                     reader.readAsDataURL(files[i]);
                     reader.onload =function(e){
                     	// vm.images.push(e.target.result);
+                        console.log('createImage2', index, key, vm.compData[index], vm.compData[index].contents[key]);
                     	vm.compData[index].contents[key].image = e.target.result;
                     };
                 }
@@ -296,8 +308,11 @@
                     return;
                 }
                 var dummy = this.compData[index];
-                this.compData.$set(index, this.compData[index-1]);
-                this.compData.$set(index-1, dummy);
+                // vue1.0
+                // this.compData.$set(index, this.compData[index-1]);
+                // this.compData.$set(index-1, dummy);
+                this.$set(this.compData, index, this.compData[index-1]);
+                this.$set(this.compData, index-1, dummy);
                 // 正在编辑的
                 if(this.isEdit.index === index){
                     this.isEdit.index = index-1;
@@ -312,10 +327,13 @@
                     return;
                 }
                 var dummy = this.compData[index];
-                this.compData.$set(index, this.compData[index+1]);
-                this.compData.$set(index+1, dummy);
+                // vue1.0
+                // this.compData.$set(index, this.compData[index+1]);
+                // this.compData.$set(index+1, dummy);
+                this.$set(this.compData, index, this.compData[index+1]);
+                this.$set(this.compData, index+1, dummy);
                  // 正在编辑的
-                 console.log(index);
+                 console.log('正在编辑的', index);
                  console.log(this.isEdit.index);
                 if(this.isEdit.index === index){
                     this.isEdit.index = index+1;
@@ -323,7 +341,7 @@
                     this.isEdit.index = index;
                 }
             },
-            //编辑链接和标题
+            // 编辑链接和标题
             editLinkTitle:function(index,key){
                 this.isEdit.index = index;
                 this.isEdit.key = key;
@@ -391,7 +409,7 @@
             },
             // 全部保存
             saveAll:function(){
-                console.log('全部保存');
+                console.log('全部保存的数据', this.compData);
             }
             // uploadImage: function() {
             //     console.log(this.images);

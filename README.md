@@ -4,6 +4,8 @@
 或者：(原来是在coding，现转移到到github。)
 [github demo->后端CMS运营界面](http://lxchuan12.github.io/vue-cms)
 
+> 2017-11-18 使用Vue2.0重构
+
 页面，拖拽，保存，上传图片。
 vuejs，或者用jquery.
 **参考：**
