@@ -1,5 +1,5 @@
-#vue-cms
-###20160927-20161010  后端CMS运营界面
+# vue-cms
+### 20160927-20161010  后端CMS运营界面
 [coding demo->后端CMS运营界面](http://rowboat.coding.me/cms)
 或者：(原来是在coding，现转移到到github。)
 [github demo->后端CMS运营界面](http://lxchuan12.github.io/vue-cms)
@@ -21,7 +21,13 @@ vuejs，或者用jquery.
 数据接口，自己写模拟json数据.
 >1、页面简陋
 
->2、拖拽
+>2、拖拽 Vue1.0采用的插件:
+[vue-drag-and-drop](https://github.com/james2doyle/vue-drag-and-drop)
+[vue-drag-and-drop DEMO](https://codepen.io/Lazyboy/pen/RRgRPb)
+[vue-sortable](https://github.com/sagalbot/vue-sortable)
+
+使用Vue2.0重写时，采用的是:
+[Vue.Draggable](https://github.com/SortableJS/Vue.Draggable)
 
 >3、上传图片和文件插件
 
@@ -60,7 +66,7 @@ vuejs，或者用jquery.
 >
 >7.删除按钮的confirm提示---2
 
-###20161013 抽离组件
+### 20161013 抽离组件
 >1、删除时，编辑栏隐藏；正在编辑，拖拽、排序后，依旧显示高亮；---1
 >
 >2、outline---红色，outline加padding---3
