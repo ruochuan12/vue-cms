@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Vue.js Drag And Drop</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <style>
+    /* Prevent the text contents of draggable elements from being selectable. */
+    [draggable] {
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      /* Required to make elements draggable in old WebKit */
+      -khtml-user-drag: element;
+      -webkit-user-drag: element;
+      cursor: move;
+      /* just for styles, not required */
+      transition: all 0.2s ease;
+    }
+    .dragging {
+      opacity: 0.5;
+    }
+    .drag-enter, .drag-over {
+      transform: scale(0.9);
+    }
+    .drag-over {
+      filter: grayscale(100%);
+    }
+    .drag-out {
+      transform: rotate(10deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+    <drag-and-drop id="myId">
+      <img v-for="image in images" v-bind:src="image.src" v-bind:title="image.name" v-bind:alt="image.name" width="200" height="200"/>
+    </drag-and-drop>
+  </div>
+<script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+<script src="./lib/vue.drag-and-drop.js"></script>
+<script>
+  /* globals Vue */
+  var App = new Vue({
+    el: '#app',
+    data: {
+      images: [
+        {
+          "name":"Image 1",
+          "src":"https://placehold.it/200/bada55/ffffff"
+        },
+        {
+          "name":"Image 2",
+          "src":"https://placehold.it/200/C93742/ffffff"
+        },
+        {
+          "name":"Image 3",
+          "src":"https://placehold.it/200/6894D1/ffffff"
+        }
+      ]
+    },
+    methods: {
+      //...
+    }
+  });
+</script>
+</body>
+</html>
